@@ -4,6 +4,7 @@ import com.demo.sort.annotation.Sort;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.DecimalFormat;
 
 /**
  * Created with IDEA
@@ -11,6 +12,8 @@ import java.lang.reflect.Method;
  * Date: 2018-03-24
  */
 public class Main {
+    private static final DecimalFormat df = new DecimalFormat("0.00%");
+
     /**
      * 生成随机数组
      *
@@ -18,7 +21,7 @@ public class Main {
      * @param range
      * @return
      */
-    public static int[] generateArray(int len, int range) {
+    private static int[] generateArray(int len, int range) {
         if (len < 1) {
             return null;
         }
@@ -34,12 +37,13 @@ public class Main {
      *
      * @param arr
      */
-    public static void printArray(int[] arr) {
+    private static void printArray(int[] arr) {
         if (arr == null || arr.length == 0) {
             return;
         }
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
+        System.out.print(arr[0]);
+        for (int i = 1; i < arr.length; i++) {
+            System.out.print(", " + arr[i]);
         }
         System.out.println();
     }
@@ -50,7 +54,7 @@ public class Main {
      * @param arr
      * @return
      */
-    public static boolean isSorted(int[] arr) {
+    private static boolean isSorted(int[] arr) {
         if (arr == null || arr.length < 2) {
             return true;
         }
@@ -64,28 +68,41 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            Test test = new Test();
-            Class testClass = test.getClass();
+            TestSort testSort = new TestSort();
+            Class testClass = testSort.getClass();
             Method[] methods = testClass.getDeclaredMethods();
             for (Method method: methods) {
                 if (method.isAnnotationPresent(Sort.class)) {
                     Sort sort = method.getAnnotation(Sort.class);
+                    System.out.println("Start test: " + sort.value());
                     //排序测试
-                    int len = 10;
+                    int testFail = 0;
+                    int testCount = 0;
+                    int testPass = 0;
+
+                    int len;
                     int range = 10;
-                    int testTimes = 50000;
-                    for (; testTimes > 0; --testTimes) {
+                    for (int i = 0; i < 50000; ++i) {
+                        len = (int) (Math.random() * (range + 1));
                         int[] arr = generateArray(len, range);
-                        method.invoke(test, (Object) arr);
+                        method.invoke(testSort, (Object) arr);
+                        testCount++;
                         if (!isSorted(arr)) {
-                            System.out.println("Wrong Case:");
-                            printArray(arr);
-                            break;
+                            if (testFail == 0) {
+                                System.out.println("Wrong case: ");
+                            }
+                            if (testFail < 5) {
+                                printArray(arr);
+                            }
+                            if (testFail == 5) {
+                                System.out.println("...");
+                            }
+                            testFail++;
+                        } else {
+                            testPass++;
                         }
                     }
-                    if (0 == testTimes) {
-                        System.out.println("pass successed: " + sort.value());
-                    }
+                    System.out.println(testPass+ "/" + testCount + " " + df.format((double) testPass / testCount) + "passed\n");
                 }
             }
         } catch (IllegalAccessException e) {
@@ -94,4 +111,5 @@ public class Main {
             e.printStackTrace();
         }
     }
+
 }

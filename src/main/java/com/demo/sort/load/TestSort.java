@@ -7,7 +7,7 @@ import com.demo.sort.annotation.Sort;
  * User: zzzz76
  * Date: 2018-03-24
  */
-public class Test {
+public class TestSort {
 
     private void swap(int[] arr, int index1, int index2) {
         int tmp = arr[index1];
@@ -20,7 +20,7 @@ public class Test {
         if (arr == null || arr.length < 2) {
             return;
         }
-        for (int i = arr.length - 1; i >= 0; i--) {
+        for (int i = arr.length - 1; i >= 2; i--) {
             for (int j = 0; j < i; j++) {
                 if (arr[j] > arr[j + 1]) {
                     swap(arr, j, j + 1);
