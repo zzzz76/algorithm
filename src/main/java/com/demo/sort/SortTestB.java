@@ -6,66 +6,20 @@ import com.demo.sort.loader.TestLoader;
 /**
  * Created with IDEA
  * User: zzzz76
- * Date: 2018-03-24
+ * Date: 2018-03-25
+ * 题目：
+ * 比较排序算法B
+ * 时间复杂度：O(N*logN)
  */
-public class SortTest {
-
+public class SortTestB {
     public static void main(String[] args) {
-        TestLoader.load(new SortTest());
+        TestLoader.load(new SortTestB());
     }
 
     private void swap(int[] arr, int index1, int index2) {
         int tmp = arr[index1];
         arr[index1] = arr[index2];
         arr[index2] = tmp;
-    }
-
-    @Sort(value = "bubbleSort")
-    public void bubbleSort(int[] arr) {
-        if (arr == null || arr.length < 2) {
-            return;
-        }
-        for (int i = arr.length - 1; i >= 0; i--) {
-            for (int j = 0; j < i; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    swap(arr, j, j + 1);
-                }
-            }
-        }
-    }
-
-    @Sort(value = "selectSort")
-    public void selectSort(int[] arr) {
-        if (arr == null || arr.length < 2) {
-            return;
-        }
-        int mini = 0;
-        for (int i = 0; i < arr.length - 1; i++) {
-            mini = i;
-            for (int j = i + 1; j < arr.length; j++) {
-                mini = arr[mini] > arr[j] ? j : mini;
-            }
-            swap(arr, i, mini);
-        }
-    }
-
-    @Sort(value = "insertSort")
-    public void insertionSort(int[] arr) {
-        if (arr == null || arr.length < 2) {
-            return;
-        }
-        int index = 0;
-        for (int i = 1; i < arr.length; i++) {
-            index = i;
-            while (index > 0) {
-                if (arr[index - 1] > arr[index]) {
-                    swap(arr, index - 1, index);
-                    index--;
-                } else {
-                    break;
-                }
-            }
-        }
     }
 
     private void merge(int[] arr, int left, int mid, int right) {
@@ -101,6 +55,12 @@ public class SortTest {
         merge(arr, left, mid, right);
     }
 
+    /**
+     * 归并排序
+     * 空间复杂度：O(N)
+     *
+     * @param arr
+     */
     @Sort(value = "mergeSort")
     public void mergeSort(int[] arr) {
         if (arr == null || arr.length < 2) {
@@ -131,6 +91,12 @@ public class SortTest {
         }
     }
 
+    /**
+     * 快速排序
+     * 空间复杂度：O(logN)~O(N)
+     *
+     * @param arr
+     */
     @Sort(value = "quickSort")
     public void quickSort(int[] arr) {
         if (arr == null || arr.length < 2) {
@@ -156,6 +122,12 @@ public class SortTest {
         }
     }
 
+    /**
+     * 堆排序
+     * 空间复杂度：O(1)
+     *
+     * @param arr
+     */
     @Sort(value = "heapSort")
     public void heapSort(int[] arr) {
         // write code here
@@ -173,6 +145,12 @@ public class SortTest {
         }
     }
 
+    /**
+     * 希尔排序
+     * 空间复杂度：O(1)
+     *
+     * @param arr
+     */
     @Sort(value = "shellSort")
     public void shellSort(int[] arr) {
         if (arr == null || arr.length < 2) {
