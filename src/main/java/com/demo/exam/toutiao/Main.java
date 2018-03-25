@@ -1,4 +1,4 @@
-package com.toutiao;
+package com.demo.exam.toutiao;
 
 import java.util.Scanner;
 

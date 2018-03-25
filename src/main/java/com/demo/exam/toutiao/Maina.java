@@ -1,6 +1,4 @@
-package com.toutiao;
-
-import com.sun.jndi.toolkit.ctx.HeadTail;
+package com.demo.exam.toutiao;
 
 import java.util.Scanner;
 
