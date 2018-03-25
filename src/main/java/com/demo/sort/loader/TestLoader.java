@@ -1,4 +1,4 @@
-package com.demo.sort.load;
+package com.demo.sort.loader;
 
 import com.demo.sort.annotation.Sort;
 
@@ -11,7 +11,7 @@ import java.text.DecimalFormat;
  * User: zzzz76
  * Date: 2018-03-24
  */
-public class Main {
+public class TestLoader {
     private static final DecimalFormat df = new DecimalFormat("0.00%");
 
     /**
@@ -66,10 +66,14 @@ public class Main {
         return true;
     }
 
-    public static void main(String[] args) {
+    /**
+     * 加载实例，完成测试
+     *
+     * @param object
+     */
+    public static void load(Object object) {
         try {
-            TestSort testSort = new TestSort();
-            Class testClass = testSort.getClass();
+            Class testClass = object.getClass();
             Method[] methods = testClass.getDeclaredMethods();
             for (Method method: methods) {
                 if (method.isAnnotationPresent(Sort.class)) {
@@ -85,7 +89,7 @@ public class Main {
                     for (int i = 0; i < 50000; ++i) {
                         len = (int) (Math.random() * (range + 1));
                         int[] arr = generateArray(len, range);
-                        method.invoke(testSort, (Object) arr);
+                        method.invoke(object, (Object) arr);
                         testCount++;
                         if (!isSorted(arr)) {
                             if (testFail == 0) {
