@@ -7,6 +7,7 @@ import com.demo.sort.loader.TestLoader;
  * Created with IDEA
  * User: zzzz76
  * Date: 2018-03-25
+ *
  * 题目：
  * 比较排序算法B
  * 时间复杂度：O(N*logN)
@@ -56,8 +57,9 @@ public class SortTestB {
     }
 
     /**
-     * 归并排序
-     * 空间复杂度：O(N)
+     * 归并排序（后序遍历二叉树）
+     * 空间复杂度：O(N + logN)
+     * 稳定的排序算法
      *
      * @param arr
      */
@@ -92,8 +94,12 @@ public class SortTestB {
     }
 
     /**
-     * 快速排序
-     * 空间复杂度：O(logN)~O(N)
+     * 快速排序(前序遍历二叉树)
+     * 最优空间复杂度：O(logN)
+     * 最差空间复杂度：O(N)
+     * 最优时间复杂度：O(N*logN)
+     * 最差时间复杂度：O(N^2)
+     * 不稳定的排序算法
      *
      * @param arr
      */
@@ -124,7 +130,8 @@ public class SortTestB {
 
     /**
      * 堆排序
-     * 空间复杂度：O(1)
+     * 空间复杂度递归/迭代：O(logN)/O(1)
+     * 不稳定的排序算法
      *
      * @param arr
      */
@@ -148,7 +155,7 @@ public class SortTestB {
     /**
      * 希尔排序
      * 空间复杂度：O(1)
-     *
+     * 不稳定的排序算法
      * @param arr
      */
     @Sort(value = "shellSort")

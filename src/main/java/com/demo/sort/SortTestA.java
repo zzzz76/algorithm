@@ -7,6 +7,7 @@ import com.demo.sort.loader.TestLoader;
  * Created with IDEA
  * User: zzzz76
  * Date: 2018-03-24
+ *
  * 题目：
  * 比较排序算法A
  * 时间复杂度：O(N^2)
@@ -24,6 +25,12 @@ public class SortTestA {
         arr[index2] = tmp;
     }
 
+    /**
+     * 冒泡排序
+     * 稳定的排序算法
+     *
+     * @param arr
+     */
     @Sort(value = "bubbleSort")
     public void bubbleSort(int[] arr) {
         if (arr == null || arr.length < 2) {
@@ -38,6 +45,12 @@ public class SortTestA {
         }
     }
 
+    /**
+     * 选择排序
+     * 不稳定的排序算法
+     *
+     * @param arr
+     */
     @Sort(value = "selectSort")
     public void selectSort(int[] arr) {
         if (arr == null || arr.length < 2) {
@@ -53,6 +66,14 @@ public class SortTestA {
         }
     }
 
+    /**
+     * 插入排序
+     * 最优时间复杂度：O(N)
+     * 最差时间复杂度：O(N^2)
+     * 稳定的排序算法
+     *
+     * @param arr
+     */
     @Sort(value = "insertSort")
     public void insertionSort(int[] arr) {
         if (arr == null || arr.length < 2) {
@@ -71,6 +92,4 @@ public class SortTestA {
             }
         }
     }
-
-
 }

@@ -12,6 +12,7 @@ import com.demo.sort.loader.TestLoader;
  * 桶排序C
  * 时间复杂度：O(N)
  * 空间复杂度：O(M)
+ * 稳定的排序算法
  */
 public class SortTestC {
     public static void main(String[] args) {
